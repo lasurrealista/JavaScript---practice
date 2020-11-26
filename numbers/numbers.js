@@ -34,17 +34,18 @@ console.log(addItems([9223372036854775809, -9223372036854775809999, 6, 8955, 646
 console.log(addItems([9223372036854775809, -922337203685477581000000, -9223372036854775809999, 6, 8955, 646, 54.54, 666]));
 
 /*
-
 const addItems = (...numbers) => {
     let sum = 0;
     let big = false;
     for (let i = 0; i < numbers.length; i++) {
-        big = !Number.isSafeInteger(sum) || !Number.isSafeInteger(sum);
-        sum += big ? BigInt(numbers[i]) : sum += numbers[i];
+        big = !Number.isSafeInteger(numbers[i]) || !Number.isSafeInteger(sum);
+        sum = big ? BigInt(sum) : sum;
+        sum += big ? BigInt(numbers[i]) : numbers[i];
      }; return sum;
 };
 
-console.log(addItems(6, 646456, 89, 234, 9223372036854775809));
+console.log(addItems(6, 646456, 89, 234, 9223372036854775809))
+console.log(addItems(85, 55, 66, 88));
 
 */
 
@@ -56,11 +57,12 @@ const addItems2 = (...numbers) => {
     for (let i = 0; i < numbers.length; i++) {
         big = typeof numbers[i] === 'bigint' || !Number.isSafeInteger(sum);
         sum = big ? BigInt(sum) : sum;
-        sum += big ? BigInt(numbers[i]) : sum += numbers[i];
+        sum += big ? BigInt(numbers[i]) : numbers[i];
     } return sum;
 }
 
-console.log(addItems2([9223372036854775809n, -922337203685477581000000, -9223372036854775809999n, 6, 8955, 646, 54.54, 666]));
+console.log(addItems2(9223372036854775809, -922337203685477581000000, -9223372036854775809999, 6, 8955, 646, 54, 666));
+console.log(addItems2(5, 16, 999, 44, 66, 77, 88));
 
 /* 3 */
 
