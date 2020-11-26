@@ -16,6 +16,7 @@ const merge = ( ...objects ) => ( { ...objects } );
 console.log(merge(johnDoe, janeDoe));
 
 /* 
+
 function transform(...objects) {
     return {
       ...[...objects]
@@ -35,6 +36,7 @@ console.log(transform(johnDoe, janeDoe));
             lastName: 'Doe'
         }
     };
+
 */
 
 /* 2 */
@@ -61,6 +63,7 @@ const sampleArray3 = ['Elza   ', 'Anna'];
 const character = 'a';
 
 /*
+
 const merge = [...sampleArray1, ...sampleArray2, ...sampleArray3];
 console.log(merge);
 
