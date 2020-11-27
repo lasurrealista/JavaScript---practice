@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+
+html {
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2rem;
+}
+
+.grid__container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.game {
+    background-color: rgb(146, 190, 231);
+    display: grid;
+    font-family: 'Dancing Script', Courier, monospace;
+    height: 400px;
+    grid-template-columns: auto auto auto;
+    grid-gap: 1px;
+    width: 400px;
+}
+
+.cell {
+    align-items: center;
+    background-color: rgb(68, 68, 214);
+    color: white;
+    display: flex;
+    font-size: 3rem;
+    height: 133px;
+    justify-content: center;
+    width: 133px;
+}
+
+.button {
+    background-color: rgb(163, 214, 68);
+    border: 1px solid;
+    border-radius: 5px;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.3rem;
+    margin-top: .5rem;
+    padding: .5rem;
+}
+
+.button__div {
+    padding: 1rem;
+}
+
+.message {
+    color: black;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    padding: 2rem 1rem 0rem 1rem;
+}
