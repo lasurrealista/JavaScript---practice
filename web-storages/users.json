@@ -1,0 +1,33 @@
+
+{
+    "users": [
+        {
+            "firstName": "Ana",
+            "lastName": "de Armas"
+        },
+        {
+            "firstName": "Betty",
+            "lastName": "Boop"
+        },
+        {
+            "firstName": "Charlie",
+            "lastName": "Chaplin"
+        },
+        {
+            "firstName": "Danny",
+            "lastName": "DeVito"
+        },
+        {
+            "firstName": "Emilio",
+            "lastName": "Estevez"
+        },
+        {
+            "firstName": "Fanny",
+            "lastName": "Finch"
+        },
+        {
+            "firstName": "Giovanna",
+            "lastName": "Gagliardo"
+        }
+    ]
+}
