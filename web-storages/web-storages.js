@@ -111,18 +111,76 @@ const cookieHandler = {
 
 /* 3 */
 
+/*
+   const userHandler = {
+        getList() {
+            return new Promise( (res, rej) => {
+                if (localStorage.users) {
+                    res(JSON.parse(localStorage.users));
+                } else {
+                    fetch('http://localhost:3000/users')
+                        .then(response => res(response.json()));
+                }
+            });
+        },
+        showList(parent) {
+            parent = document.querySelector(parent);
+            this.getList().then(
+                list => {
+                    this.generateList(parent, list);
+                    localStorage.users = JSON.stringify(list);
+                },
+                err => console.error(err)
+            );
+        },
+        generateList(parent, list) {
+            list.forEach(element => {
+                const p = document.createElement('p');
+                p.classList.add('user-row');
+                p.textContent = `${element.firstName} ${element.lastName}`;
+                parent.appendChild(p);
+            });
+        }
+    }
+
+    userHandler.showList('.user-list');
+
+*/
 const userHandler = {
-    getList() {
+    delay: 5,
+    repeatCount: 10,
+
+    repeatNum: 1,
+
+    getList(resolveFunc) {
         return new Promise( (res, rej) => {
-            if (localStorage.users) {
-                res(JSON.parse(localStorage.users));
-            } else {
-                fetch('http://localhost:3000/users')
-                    .then(response => res(response.json()));
-            }
-        });
+            res = resolveFunc ? resolveFunc : res;
+            fetch('http://localhost:8000/users')
+                .then(response => res(response.json()))
+                .catch(
+                    function(e) {
+
+                        if (this.repeatNum < this.repeatCount) {
+                            const to = setTimeout( () => {
+                            this.getList(res);
+                             this.repeatNum++;
+                        }, this.delay * 1000); return;
+                    }
+                        this.repeatNum = 1;
+                        alert('Az alkalmazás offline.');
+                        if (localStorage.users) {
+                            res( Promise.resolve(JSON.parse(localStorage.users)));
+                        } else {
+                            alert('A helyi tároló is üres.')
+                            res ( Promise.resolve([]));
+                        }
+                    }
+                );
+        })
     },
-    showList(parent) {
+    showList(parent, delay, repeatCount) {
+        this.delay = delay;
+        this.repeatCount = repeatCount;
         parent = document.querySelector(parent);
         this.getList().then(
             list => {
@@ -143,3 +201,11 @@ const userHandler = {
 }
 
 userHandler.showList('.user-list');
+
+export {
+    setCookie,
+    cookieHandler,
+    userHandler,
+}
+
+// 12-exception
