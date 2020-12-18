@@ -146,6 +146,62 @@ const cookieHandler = {
     userHandler.showList('.user-list');
 
 */
+
+const userHandler = {
+    delay: 5,
+    repeatCount: 10,
+    repeatNum: 0,
+    url: 'http://localhost:3000/users',
+    async getList() {
+        while (this.repeatNum < this.repeatCount) {
+            try {
+                const response = await fetch(this.url);
+                const data = await response.json();
+                this.repeatNum = 0;
+                return data;
+            } catch(e) {
+                this.repeatNum++;
+                await new Promise( (res) => setTimeout(res, this.delay * 1000));
+                return this.getList();
+            }
+        }
+
+        this.repeatNum = 0;
+        alert('Az alkalmazás offline.');
+        if (localStorage.users) {
+            return JSON.parse(localStorage.users);
+        } else {
+            alert('A helyi tároló is üres.');
+            return [];
+        }
+
+    },
+    async showList(parent, delay, repeatCount) {
+        parent = document.querySelector(parent);
+        this.delay = delay;
+        this.repeatCount = repeatCount;
+        const list = await this.getList();
+        this.generateList(parent, list);
+        localStorage.users = JSON.stringify(list);
+    },
+    generateList(parent, list) {
+        list.forEach(element => {
+            const p = document.createElement('p');
+            p.classList.add('user-row');
+            p.textContent = `${element.firstName} ${element.lastName}`;
+            parent.appendChild(p);
+        });
+    }
+};
+
+export {
+    setCookie,
+    cookieHandler,
+    userHandler,
+}
+
+/*
+
 const userHandler = {
     delay: 5,
     repeatCount: 10,
@@ -209,3 +265,5 @@ export {
 }
 
 // 12-exception
+
+*/

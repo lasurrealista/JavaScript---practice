@@ -1,5 +1,5 @@
 'use strict';
 
-import { userHandler } from './handle-exceptions.js';
+import { userHandler } from './web-storages.js';
 
 userHandler.showList('.list', 5, 10);
