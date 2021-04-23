@@ -389,3 +389,25 @@ let cartesian = arr7.map(a => {
   }).flat();
 
 console.log(cartesian);
+
+/*17*/
+
+const names = ['Aladár', 'Béla', 'Ádám', 'géza', 'István'];
+names.sort( new Intl.Collator('hu').compare );
+console.log(names);
+
+/*
+for (let i = 0; i < names.length; i++) {
+    for (let j = i+1; j < names.length; j++) {
+        if (names[i].localeCompare(names[j]) === 1) {
+            [names[i], names[j]] = [names[j], names[i]];
+        }
+    }
+}
+console.log(names);
+
+names.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+*/
+
+names.sort( (a, b) => a.localeCompare(b) );
+console.log(names);
